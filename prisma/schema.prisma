@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model BandMember {
+  id           String        @id @default(cuid())
+  name         String       
+  address      String
+  email        String        @unique
+  password     String
+  admin        Boolean
+  instrumentId Int?
+  instrument   Instrument?  @relation(fields: [instrumentId], references: [id])
+  musician     Musician_gig[]
+}
+
+model Instrument {
+  id          Int          @id @default(autoincrement())
+  name        String
+  bandMember  BandMember[]
+}
+
+model Venue {
+  id                 String          @id @default(cuid())
+  adress             String
+  phoneNumber        String
+  website            String
+  loadinNotes        String? // 'null' in prisma schema means optional
+  googleMapsEmbed    String
+  gig                Gig[]
+}
+
+
+model BookedBy {
+  id      Int     @id @default(autoincrement())
+  name    String
+  details String
+  gig     Gig[]
+}
+
+model Gig {
+  id           Int       @id @default(autoincrement())
+  venueId      String
+  bookedId     Int
+  startTime    String
+  endTime      String
+  day          String
+  date         String
+  notes        String?
+  soundnotes   String?
+  venue        Venue     @relation(fields: [venueId], references: [id])
+  bookedBy     BookedBy  @relation(fields: [bookedId], references: [id])
+  musician     Musician_gig[]
+}
+
+model Musician_gig {
+  gigId          Int         @id
+  bandMemberId   String
+  confirmed      Boolean
+  bandMember     BandMember  @relation(fields: [bandMemberId], references: [id])
+  gig            Gig         @relation(fields: [gigId], references: [id])
+}
