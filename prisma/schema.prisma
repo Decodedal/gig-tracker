@@ -65,6 +65,7 @@ model Musician_gig {
   gigId          Int         @id
   bandMemberId   String
   confirmed      Boolean
+  payment        Int
   bandMember     BandMember  @relation(fields: [bandMemberId], references: [id])
   gig            Gig         @relation(fields: [gigId], references: [id])
 }
