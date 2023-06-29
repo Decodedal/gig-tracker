@@ -8,14 +8,14 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
-
+} */
+/* 
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -24,4 +24,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+.blue_button{
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-8 md:w-3/4 lg:w-1/2 px-4 rounded h-10 transition-all duration-300 transform hover:scale-105 text-sm;
 }

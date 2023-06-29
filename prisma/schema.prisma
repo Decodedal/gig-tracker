@@ -39,17 +39,14 @@ model Venue {
 }
 
 
-model BookedBy {
-  id      Int     @id @default(autoincrement())
-  name    String
-  details String
-  gig     Gig[]
-}
-
 model Gig {
   id           Int       @id @default(autoincrement())
+  name         String
+  client       String
+  date_booked  String
+  ceremony     String
+  cocktail     String
   venueId      String
-  bookedId     Int
   startTime    String
   endTime      String
   day          String
@@ -57,7 +54,6 @@ model Gig {
   notes        String?
   soundnotes   String?
   venue        Venue     @relation(fields: [venueId], references: [id])
-  bookedBy     BookedBy  @relation(fields: [bookedId], references: [id])
   musician     Musician_gig[]
 }
 
@@ -66,6 +62,8 @@ model Musician_gig {
   bandMemberId   String
   confirmed      Boolean
   payment        Int
+  cocktail       Boolean
+  ceremony       Boolean
   bandMember     BandMember  @relation(fields: [bandMemberId], references: [id])
   gig            Gig         @relation(fields: [gigId], references: [id])
 }
