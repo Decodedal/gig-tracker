@@ -27,5 +27,9 @@ body {
 } */
 
 .blue_button{
-  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-8 md:w-3/4 lg:w-1/2 px-4 rounded h-10 transition-all duration-300 transform hover:scale-105 text-sm;
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mt-12 md:w-3/4 lg:w-1/2 px-4 rounded h-10 transition-all duration-300 transform hover:scale-105 text-sm;
+}
+
+.create_button{
+  @apply  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  w-1/6 text-center px-4 rounded h-10 transition-all duration-300 transform hover:scale-105 text-sm;
 }

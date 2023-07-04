@@ -11,21 +11,28 @@ datasource db {
 }
 
 model BandMember {
-  id           String        @id @default(cuid())
-  name         String       
-  address      String
-  email        String        @unique
-  password     String
-  admin        Boolean
-  instrumentId Int?
-  instrument   Instrument?  @relation(fields: [instrumentId], references: [id])
-  musician     Musician_gig[]
+  id                 String              @id @default(cuid())
+  name               String       
+  address            String
+  email              String              @unique
+  password           String
+  admin              Boolean
+  musicianInstrument MusicianInstrument[]
+  musician           Musician_gig[]
 }
 
 model Instrument {
-  id          Int          @id @default(autoincrement())
-  name        String
-  bandMember  BandMember[]
+  id                 Int                @id @default(autoincrement())
+  name               String
+  musicianInstrument MusicianInstrument[]
+}
+
+model MusicianInstrument {
+  bandMember   BandMember  @relation(fields: [bandMemberId], references: [id])
+  bandMemberId String
+  instrument   Instrument  @relation(fields: [instrumentId], references: [id])
+  instrumentId Int
+  @@id([bandMemberId, instrumentId])
 }
 
 model Venue {
