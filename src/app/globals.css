@@ -33,3 +33,11 @@ body {
 .create_button{
   @apply  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  w-1/6 text-center px-4 rounded h-10 transition-all duration-300 transform hover:scale-105 text-sm;
 }
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.submit_button{
+  @apply border h-10 w-1/2 border-blue-700 bg-blue-700 text-white font-bold hover:bg-white hover:text-blue-700 transition-all duration-300
+}
